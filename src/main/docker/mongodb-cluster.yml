@@ -1,0 +1,16 @@
+version: '2'
+services:
+  eustories-mongodb:
+    image: mongo:4.0.13
+    ports:
+      - '27017:27017'
+    command: mongos --configdb eustories-mongodb-config
+  eustories-mongodb-node:
+    build:
+      context: .
+      dockerfile: mongodb/MongoDB.Dockerfile
+    command: mongod --replSet rs1 --noprealloc --smallfiles
+  eustories-mongodb-config:
+    image: mongo:4.0.13
+    container_name: eustories-mongodb-config
+    command: mongod --noprealloc --smallfiles --configsvr --dbpath /data/db
