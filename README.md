@@ -20,7 +20,14 @@ Run the following commands in two separate terminals to create a blissful develo
 auto-refreshes when files change on your hard drive.
 
     ./mvnw
-    npm start
+
+if do not have administrative rights run the client with
+  
+ npm start
+  
+Otherwise run the client with
+
+    mpm start-proxy
 
 Npm is also used to manage CSS and JavaScript dependencies used in this application. You can upgrade dependencies by
 specifying a newer version in [package.json](package.json). You can also run `npm update` and `npm install` to manage dependencies.
