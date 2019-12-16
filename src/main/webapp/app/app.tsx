@@ -23,7 +23,7 @@ class App extends Component {
     this.setState( {
       modules: [
         {"code":"Admin","name":"Admin module","numOfStories":5},
-        {"code":"esub","name":"submission","numOfStories":15},
+        {"code":"esub","name":newName,"numOfStories":15},
         {"code":"ga","name":"Grant","numOfStories":35}
       ]
     } )
@@ -47,15 +47,15 @@ class App extends Component {
         <div>
           <Button label="Click" icon="pi pi-check" />
         </div>
-        <button onClick={() => this.switchNameHandler('Maximilian!!')}>Switch Name</button>
+        <button onClick={() => this.switchNameHandler('Evaluation')}>Switch Name</button>
         <ModuleComponent
           name={this.state.modules[0].name}
           numOfStories={this.state.modules[0].numOfStories} />
         <ModuleComponent
           name={this.state.modules[1].name}
           numOfStories={this.state.modules[1].numOfStories}
-          click={this.switchNameHandler.bind(this, 'Max!')}
-          changed={this.nameChangedHandler} >My Hobbies: Racing</ModuleComponent>
+          click={this.switchNameHandler.bind(this, 'Evaluation 2')}
+          changed={this.nameChangedHandler} ></ModuleComponent>
         <ModuleComponent
           name={this.state.modules[2].name}
           numOfStories={this.state.modules[2].numOfStories} />
