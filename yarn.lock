@@ -9367,6 +9367,16 @@ pretty-format@^24.9.0:
     ansi-styles "^3.2.0"
     react-is "^16.8.4"
 
+primeicons@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/primeicons/-/primeicons-2.0.0.tgz#ec3e5a8d4d04a09309225a5a57deb911e08dc0d3"
+  integrity sha512-GJTCeMSQU8UU1GqbsaDrg/IH+b/vSinJQl52NVpdJ7sShYLZA8Eq6jLF48Ye3N/dQloGrE07i7XsZvxQ9pNbqg==
+
+primereact@^3.3.3:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/primereact/-/primereact-3.3.3.tgz#1efd88d5348da512eae94aeda19d64396a396d49"
+  integrity sha512-CHBEL7KwvITs3eemS0OeNzrOsDZnNUTUgTSpKmRLs4jGC5iEumHOHhWdY/9fJ74Xh6on9bIVuz6ArDG6T+cgsg==
+
 process-nextick-args@^2.0.0, process-nextick-args@~2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"

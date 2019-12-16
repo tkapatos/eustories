@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import './app.scss';
 import Person from './Person/Person';
 
+import {Button} from 'primereact/button';
+
+import 'primereact/resources/themes/nova-light/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+
 class App extends Component {
   state = {
     persons: [
@@ -35,10 +41,14 @@ class App extends Component {
   }
 
   render () {
+    // @ts-ignore
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
+        <div>
+          <Button label="Click" icon="pi pi-check" />
+        </div>
         <button onClick={() => this.switchNameHandler('Maximilian!!')}>Switch Name</button>
         <Person
           name={this.state.persons[0].name}
@@ -51,7 +61,9 @@ class App extends Component {
         <Person
           name={this.state.persons[2].name}
           age={this.state.persons[2].age} />
+
       </div>
+
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   }
