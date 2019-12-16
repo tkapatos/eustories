@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './app.scss';
-import Person from './Person/Person';
-
+import ModuleComponent from './Module/ModuleComponent';
+import Module from './entities/Module';
 import {Button} from 'primereact/button';
 
 import 'primereact/resources/themes/nova-light/theme.css';
@@ -10,32 +10,31 @@ import 'primeicons/primeicons.css';
 
 class App extends Component {
   state = {
-    persons: [
-      { name: 'Max', age: 28 },
-      { name: 'Manu', age: 29 },
-      { name: 'Stephanie', age: 26 }
-    ],
-    otherState: 'some other value'
+    modules:[
+      {"code":"Admin","name":"Admin module","numOfStories":5},
+      {"code":"esub","name":"submission","numOfStories":15},
+      {"code":"ga","name":"Grant","numOfStories":25}
+    ]
   }
 
   switchNameHandler = (newName) => {
     // console.log('Was clicked!');
     // DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
     this.setState( {
-      persons: [
-        { name: newName, age: 28 },
-        { name: 'Manu', age: 29 },
-        { name: 'Stephanie', age: 27 }
+      modules: [
+        {"code":"Admin","name":"Admin module","numOfStories":5},
+        {"code":"esub","name":"submission","numOfStories":15},
+        {"code":"ga","name":"Grant","numOfStories":35}
       ]
     } )
   }
 
   nameChangedHandler = (event) => {
     this.setState( {
-      persons: [
-        { name: 'Max', age: 28 },
-        { name: event.target.value, age: 29 },
-        { name: 'Stephanie', age: 26 }
+      modules: [
+        {"code":"Admin","name":"Admin module","numOfStories":5},
+        {"code":"esub","name":"submission","numOfStories":15},
+        {"code":"ga","name":"Grant","numOfStories":45}
       ]
     } )
   }
@@ -49,17 +48,17 @@ class App extends Component {
           <Button label="Click" icon="pi pi-check" />
         </div>
         <button onClick={() => this.switchNameHandler('Maximilian!!')}>Switch Name</button>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age} />
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
+        <ModuleComponent
+          name={this.state.modules[0].name}
+          numOfStories={this.state.modules[0].numOfStories} />
+        <ModuleComponent
+          name={this.state.modules[1].name}
+          numOfStories={this.state.modules[1].numOfStories}
           click={this.switchNameHandler.bind(this, 'Max!')}
-          changed={this.nameChangedHandler} >My Hobbies: Racing</Person>
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age} />
+          changed={this.nameChangedHandler} >My Hobbies: Racing</ModuleComponent>
+        <ModuleComponent
+          name={this.state.modules[2].name}
+          numOfStories={this.state.modules[2].numOfStories} />
 
       </div>
 
