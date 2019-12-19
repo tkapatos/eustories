@@ -48,18 +48,14 @@ class App extends Component {
           <Button label="Click" icon="pi pi-check" />
         </div>
         <button onClick={() => this.switchNameHandler('Evaluation')}>Switch Name</button>
-        <ModuleComponent
-          name={this.state.modules[0].name}
-          numOfStories={this.state.modules[0].numOfStories} />
-        <ModuleComponent
-          name={this.state.modules[1].name}
-          numOfStories={this.state.modules[1].numOfStories}
-          click={this.switchNameHandler.bind(this, 'Evaluation 2')}
-          changed={this.nameChangedHandler} ></ModuleComponent>
-        <ModuleComponent
-          name={this.state.modules[2].name}
-          numOfStories={this.state.modules[2].numOfStories} />
+        <div>
+          {this.state.modules.map(module => {
+            return <ModuleComponent key={module.code}
+              name={module.name}
+              numOfStories={module.numOfStories} />
+          } )}
 
+        </div>
       </div>
 
     );
