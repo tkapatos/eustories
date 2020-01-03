@@ -19,7 +19,6 @@ class App extends Component {
 
   switchNameHandler = (newName) => {
     // console.log('Was clicked!');
-    // DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
     this.setState( {
       modules: [
         {"code":"Admin","name":"Admin module","numOfStories":5},
@@ -29,14 +28,21 @@ class App extends Component {
     } )
   }
 
-  nameChangedHandler = (event) => {
-    this.setState( {
-      modules: [
-        {"code":"Admin","name":"Admin module","numOfStories":5},
-        {"code":"esub","name":"submission","numOfStories":15},
-        {"code":"ga","name":"Grant","numOfStories":45}
-      ]
-    } )
+  nameChangedHandler = (event,code) => {
+    const moduleIndex = this.state.modules.findIndex(m => {
+      return m.code === code;
+    });
+
+    const module = {
+      ...this.state.modules[moduleIndex]
+    };
+
+    module.name = event.target.value;
+
+    const modules = [...this.state.modules];
+    modules[moduleIndex] = module;
+
+    this.setState( {modules} );
   }
 
   render () {
@@ -52,7 +58,8 @@ class App extends Component {
           {this.state.modules.map(module => {
             return <ModuleComponent key={module.code}
               name={module.name}
-              numOfStories={module.numOfStories} />
+              numOfStories={module.numOfStories}
+              changed={(event) => this.nameChangedHandler(event, module.code)}/>
           } )}
 
         </div>

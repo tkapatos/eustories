@@ -3,5 +3,8 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "rules": { "react/no-unescaped-entities": 0 }
+  "rules": {
+    "react/no-unescaped-entities": 0,
+    "no-console": "off"
+  }
 }
