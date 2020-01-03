@@ -1,4 +1,4 @@
-import moduleComponent from 'app/Module/ModuleComponent';
+import moduleComponent from 'app/components/Module/ModuleComponent';
 
 export class Module {
   public code: string;

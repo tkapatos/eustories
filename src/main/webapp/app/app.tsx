@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './app.scss';
-import ModuleComponent from './Module/ModuleComponent';
+import ModuleComponent from './components/Module/ModuleComponent';
 import Module from './entities/Module';
 import {Button} from 'primereact/button';
 
