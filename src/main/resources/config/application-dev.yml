@@ -37,8 +37,9 @@ spring:
       indent-output: true
   data:
     mongodb:
-      uri: mongodb://192.168.99.100:27017
+      uri: mongodb://localhost
       database: eustories
+
   mail:
     host: localhost
     port: 25

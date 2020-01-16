@@ -1,34 +1,30 @@
 package eu.ec.europa.inea.eustories.config;
 
-import io.github.jhipster.config.JHipsterConstants;
-import com.github.mongobee.Mongobee;
 import com.mongodb.MongoClient;
-import io.github.jhipster.domain.util.JSR310DateConverters.DateToZonedDateTimeConverter;
-import io.github.jhipster.domain.util.JSR310DateConverters.ZonedDateTimeToDateConverter;
+import com.mongodb.ServerAddress;
+import de.bwaldvogel.mongo.MongoServer;
+import de.bwaldvogel.mongo.backend.memory.MemoryBackend;
+import io.github.jhipster.config.JHipsterConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
-import org.springframework.boot.autoconfigure.mongo.MongoProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.data.mongodb.config.EnableMongoAuditing;
+import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
+import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
-
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
-import java.util.ArrayList;
-import java.util.List;
+
+import static eu.ec.europa.inea.eustories.util.Constants.SpringProfiles.DEV;
 
 @Configuration
 @EnableMongoRepositories("eu.ec.europa.inea.eustories.repository")
 @Profile("!" + JHipsterConstants.SPRING_PROFILE_CLOUD)
 @Import(value = MongoAutoConfiguration.class)
-@EnableMongoAuditing(auditorAwareRef = "springSecurityAuditorAware")
 public class DatabaseConfiguration {
 
     private final Logger log = LoggerFactory.getLogger(DatabaseConfiguration.class);
@@ -43,7 +39,7 @@ public class DatabaseConfiguration {
         return new LocalValidatorFactoryBean();
     }
 
-    @Bean
+   /* @Bean
     public MongoCustomConversions customConversions() {
         List<Converter<?, ?>> converters = new ArrayList<>();
         converters.add(DateToZonedDateTimeConverter.INSTANCE);
@@ -61,4 +57,36 @@ public class DatabaseConfiguration {
         mongobee.setChangeLogsScanPackage("eu.ec.europa.inea.eustories.config.dbmigrations");
         mongobee.setEnabled(true);
         return mongobee;
-    }}
+    }*/
+
+   //In memory mongo db
+
+    @Profile(DEV)
+    @Bean
+    public MongoTemplate mongoTemplate(MongoClient mongoClient) {
+        return new MongoTemplate(mongoDbFactory(mongoClient));
+    }
+
+    @Profile(DEV)
+    @Bean
+    public MongoDbFactory mongoDbFactory(MongoClient mongoClient) {
+        return new SimpleMongoDbFactory(mongoClient, "test");
+    }
+
+    @Profile(DEV)
+    @Bean(destroyMethod="shutdown")
+    public MongoServer mongoServer() {
+        MongoServer mongoServer = new MongoServer(new MemoryBackend());
+        mongoServer.bind();
+        return mongoServer;
+    }
+
+    @Profile(DEV)
+    @Bean(destroyMethod="close")
+    public MongoClient mongoClient(MongoServer mongoServer) {
+        return new MongoClient(new ServerAddress(mongoServer.getLocalAddress()));
+    }
+
+
+
+}
