@@ -3,10 +3,13 @@ import HomeComponent from "app/components/Home/HomeComponent";
 import HeaderComponent from "app/components/Header/HeaderComponent";
 
 class App extends Component {
+  state = {
+    username:'hi'
+  }
   render () {
     return (
       <div>
-        <HeaderComponent/>
+        <HeaderComponent  username={this.state.username}/>
         <HomeComponent/>
       </div>
     );

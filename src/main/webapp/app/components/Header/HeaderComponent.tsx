@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
-class HeaderComponent extends Component {
+interface IHeaderProps {
+  username?: string;
+ }
+
+class HeaderComponent extends Component<IHeaderProps> {
   render () {
     return (
        <header>
@@ -11,7 +15,7 @@ class HeaderComponent extends Component {
                <h1 className="full">EU stories</h1>
            </div>
            <div className="right-content">
-               Logged in as: <span className='color-primary'> </span>
+               Logged in as: <span className='color-primary'>{this.props.username} </span>
            </div>
        </header>
 
