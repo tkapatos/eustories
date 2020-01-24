@@ -14,9 +14,11 @@ class App extends Component {
 
   componentDidMount(){
     axios.get('http://localhost:8080/users/current')
-    .then(function (response) {
+    .then(response => {
         // handle success
-        console.log(response);
+        this.setState({
+          username:response.data.username
+        }) ;
     })
     .catch(function (error) {
        // handle error
