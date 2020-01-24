@@ -13,7 +13,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:9000/users/current')
+    axios.get('http://localhost:8080/users/current')
     .then(function (response) {
         // handle success
         console.log(response);
