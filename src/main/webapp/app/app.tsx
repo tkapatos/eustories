@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import HomeComponent from "app/components/Home/HomeComponent";
 import HeaderComponent from "app/components/Header/HeaderComponent";
+import {Growl} from 'primereact/growl';
+import 'primereact/resources/themes/nova-light/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
 
-class App extends Component {
+export class App extends Component {
   state = {
     username:'hi'
   }
-
+ 
   constructor(props){
     super(props);
   }
@@ -20,8 +24,8 @@ class App extends Component {
           username:response.data.username
         }) ;
     })
-    .catch(function (error) {
-       // handle error
+    .catch(error => {
+      this.growl.show({severity: 'error', summary: 'Error Message', detail: 'Error while trying to retrieve the user'});
       console.log(error);
     })
     .finally(function () {
@@ -33,6 +37,7 @@ class App extends Component {
   render () {
     return (
       <div>
+        <Growl ref={(el) => this.growl = el} />
         <HeaderComponent  username={this.state.username}/>
         <HomeComponent/>
       </div>
