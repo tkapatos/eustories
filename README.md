@@ -179,3 +179,6 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 
 
 ## externalize the url for the web service call
+## display errors in the home page
+## display the modules in the corresponding prime-ng table
+## how to globally load prime-ng css files
