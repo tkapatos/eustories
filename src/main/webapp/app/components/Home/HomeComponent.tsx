@@ -3,9 +3,7 @@ import '../../app.scss';
 import Module from '../../entities/Module';
 import axios from 'axios';
 import {Growl} from 'primereact/growl';
-import 'primereact/resources/themes/nova-light/theme.css';
-import 'primereact/resources/primereact.min.css';
-import 'primeicons/primeicons.css';
+
 
 class HomeComponent extends Component {
  
