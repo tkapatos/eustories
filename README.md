@@ -178,4 +178,4 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 [definitelytyped]: https://definitelytyped.org/
 
 ## Things to do
-
+Create a navigation bar with a link to the home page

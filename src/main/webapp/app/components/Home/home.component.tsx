@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import '../../app.scss';
-import Module from '../../entities/Module';
 import axios from 'axios';
 import {Growl} from 'primereact/growl';
 import {DataTable} from 'primereact/datatable';
 import {Column} from 'primereact/column';
 import {SERVER_API_URL} from "../../app.constants";
-
 
 class HomeComponent extends Component {
  
@@ -18,7 +16,6 @@ class HomeComponent extends Component {
     axios.get(SERVER_API_URL+'/modules')
     .then(response => {
         // handle success
-        console.log(response);
         this.setState({
           modules:response.data
         }) ;
