@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom';
 import {Menubar} from 'primereact/menubar';
-
+import HomeComponent from "app/components/home/home.component";
 class NavBarComponent extends Component {
 
     state = {
         items: [
-            {label: 'Home', icon: 'pi pi-fw pi-home',url: 'http://primetek.com.tr'}
+            {label: 'Home', icon: 'pi pi-fw pi-home',routerLink: ['/']}
         ]
     };
     
@@ -15,7 +16,9 @@ class NavBarComponent extends Component {
               <div>
               <Menubar model={this.state.items}/>
                </div>
+               
             </div>
+             
         );
       }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {BrowserRouter} from 'react-router-dom'
 import axios from 'axios';
 import HomeComponent from "app/components/home/home.component";
 import HeaderComponent from "app/components/header/header.component";
@@ -38,6 +39,7 @@ export class App extends Component {
   
   render () {
     return (
+      <BrowserRouter>
       <div>
         <Growl ref={(el) => this.growl = el} />
         <HeaderComponent  username={this.state.username}/>
@@ -45,6 +47,7 @@ export class App extends Component {
         <div>&nbsp;</div>
         <HomeComponent/>
       </div>
+      </BrowserRouter>
     );
   }
 }
