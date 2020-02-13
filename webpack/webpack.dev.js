@@ -67,6 +67,11 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
           format: options.stats === 'minimal' ? 'compact' : 'expanded'
         }),
     new FriendlyErrorsWebpackPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+          SERVER_API_URL: `'http://localhost:8080'`
+      }
+  }),
     new BrowserSyncPlugin({
       https: options.tls,
       host: 'localhost',

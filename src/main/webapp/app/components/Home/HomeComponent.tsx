@@ -3,7 +3,7 @@ import '../../app.scss';
 import Module from '../../entities/Module';
 import axios from 'axios';
 import {Growl} from 'primereact/growl';
-
+import {SERVER_API_URL} from "../../app.constants";
 
 class HomeComponent extends Component {
  
@@ -14,7 +14,7 @@ class HomeComponent extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:8080/modules')
+    axios.get(SERVER_API_URL+'/modules')
     .then(response => {
         // handle success
         this.setState({

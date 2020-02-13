@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import HomeComponent from "app/components/Home/HomeComponent";
+import HomeComponent from "app/components/home/HomeComponent";
 import HeaderComponent from "app/components/Header/HeaderComponent";
 import {Growl} from 'primereact/growl';
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
+import {SERVER_API_URL} from "./app.constants";
 
 export class App extends Component {
   state = {
-    username:'hi'
+    username:''
   }
  
   constructor(props){
@@ -17,9 +18,10 @@ export class App extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:8080/users/current')
+    axios.get(SERVER_API_URL+'/users/current')
     .then(response => {
         // handle success
+        console.log(response);
         this.setState({
           username:response.data.username
         }) ;
