@@ -178,5 +178,4 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 [definitelytyped]: https://definitelytyped.org/
 
 ## Things to do
-externalize the url for the web service call
-display the modules in the corresponding prime-ng table
+

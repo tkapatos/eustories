@@ -21,7 +21,6 @@ export class App extends Component {
     axios.get(SERVER_API_URL+'/users/current')
     .then(response => {
         // handle success
-        console.log(response);
         this.setState({
           username:response.data.username
         }) ;
