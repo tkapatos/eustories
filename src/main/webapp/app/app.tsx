@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {BrowserRouter} from 'react-router-dom'
 import axios from 'axios';
-import HomeComponent from "app/components/home/home.component";
 import HeaderComponent from "app/components/header/header.component";
 import NavBarComponent from "app/components/navbar/navbar.component";
 import {Growl} from 'primereact/growl';
@@ -44,8 +43,6 @@ export class App extends Component {
         <Growl ref={(el) => this.growl = el} />
         <HeaderComponent  username={this.state.username}/>
         <NavBarComponent  />
-        <div>&nbsp;</div>
-        <HomeComponent/>
       </div>
       </BrowserRouter>
     );

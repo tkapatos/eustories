@@ -18,7 +18,6 @@ class HeaderComponent extends Component<IHeaderProps> {
                Logged in as: <span className='color-primary'>{this.props.username} </span>
            </div>
        </header>
-
     );
   }
 }
