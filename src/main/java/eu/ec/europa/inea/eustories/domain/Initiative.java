@@ -12,13 +12,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @ToString(of = {"code"})
 @EqualsAndHashCode(of = {"code"})
-@Document(collection = "modules")
-public class Module {
+@Document(collection = "initiatives")
+public class Initiative {
     private String id;
     @Indexed
     private String code;
-    @Indexed
-    private String name;
     private String description;
-
 }
