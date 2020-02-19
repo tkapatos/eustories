@@ -13,9 +13,9 @@ import java.util.List;
 public class ModuleResource {
     @GetMapping("/modules")
     public ResponseEntity<List<Module>> getModules() {
-        Module pciref = Module.builder().code("PCIREF").name("Transparency Platform").numOfStories(3).build();
-        Module ga = Module.builder().code("GA").name("Grant Agreement").numOfStories(5).build();
-        Module pfu = Module.builder().code("PFU").name("Project Follow-up").numOfStories(10).build();
+        Module pciref = Module.builder().code("PCIREF").name("Transparency Platform").description("Transparency Platform").build();
+        Module ga = Module.builder().code("GA").name("Grant Agreement").description("Grant Agreement").build();
+        Module pfu = Module.builder().code("PFU").name("Project Follow-up").description("Project Follow-up").build();
         List<Module> modules = Arrays.asList(pciref,ga,pfu);
         return new ResponseEntity<>(modules, HttpStatus.OK);
     }
