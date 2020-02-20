@@ -6,13 +6,13 @@ import {DataTable} from 'primereact/datatable';
 import {Column} from 'primereact/column';
 import {SERVER_API_URL} from "../../app.constants";
 
-class HomeComponent extends Component {
+class InitiativeComponent extends Component {
  
   state = {
-    modules:[]
+    initiatives:[]
   }
 
-  componentDidMount(){
+  /*componentDidMount(){
     axios.get(SERVER_API_URL+'/modules')
     .then(response => {
         // handle success
@@ -29,7 +29,7 @@ class HomeComponent extends Component {
       // always executed
     });
 
-  }
+  }*/
  
   render () {
     return (
@@ -38,12 +38,8 @@ class HomeComponent extends Component {
           <div>
             <div className="card">
             <div className="card-body">
-            <h5 className="card-title">Pick the appropriate module</h5>
-              <DataTable className="card-text" value={this.state.modules}>
-                <Column field="code" header="Code" />
-                <Column field="name" header="Name" />
-                <Column field="description" header="Description" />
-              </DataTable>
+            <h5 className="card-title">Pick the appropriate initiative</h5>
+              hello
               </div>
           </div>
         </div>
@@ -52,4 +48,4 @@ class HomeComponent extends Component {
   }
 }
 
-export default HomeComponent;
+export default InitiativeComponent;
