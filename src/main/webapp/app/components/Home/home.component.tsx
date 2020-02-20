@@ -30,6 +30,12 @@ class HomeComponent extends Component {
     });
 
   }
+
+  linkToInitiatives(rowData,column){
+    return <div>
+        <a href="http://www.in.gr">{rowData.code}</a>
+      </div>;
+  }
  
   render () {
     return (
@@ -40,7 +46,7 @@ class HomeComponent extends Component {
               <div className="card-body">
                 <h5 className="card-title">Pick the appropriate module</h5>
                 <DataTable className="card-text" value={this.state.modules}>
-                  <Column field="code" header="Code" />
+                  <Column field="code" header="Code" body={this.linkToInitiatives} />
                   <Column field="name" header="Name" />
                   <Column field="description" header="Description" />
                 </DataTable>
