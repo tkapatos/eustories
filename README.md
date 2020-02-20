@@ -178,6 +178,5 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 [definitelytyped]: https://definitelytyped.org/
 
 ## Things to do
-Model the basic entities Module/Initiative/Epic/Story
 Update modules display
 Link from a module to its initiatives 

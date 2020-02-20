@@ -21,4 +21,15 @@ public class Constants {
         public static final String PROD = "prod";
 
     }
+
+    /**
+     * Status of a story
+     */
+    public enum Status{
+        TO_D0,
+        IN_PROGRESS,
+        RESOLVED,
+        IN_REVIEW,
+        COMPLETED
+    }
 }

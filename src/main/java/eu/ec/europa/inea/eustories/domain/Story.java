@@ -1,5 +1,6 @@
 package eu.ec.europa.inea.eustories.domain;
 
+import eu.ec.europa.inea.eustories.util.Constants;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,6 +19,7 @@ public class Story {
     private String id;
     private String summary;
     private String description;
+    private Constants.Status status;
     @DBRef
     private Initiative initiative;
     @DBRef
