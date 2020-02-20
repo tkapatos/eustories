@@ -2,6 +2,7 @@ package eu.ec.europa.inea.eustories.domain;
 
 import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
@@ -11,13 +12,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode(of = {"code"})
-@Document(collection = "modules")
-public class Module {
+@Document(collection = "epics")
+public class Epic {
     private String id;
     @Indexed
     private String code;
-    @Indexed
-    private String name;
     private String description;
 
+    @DBRef
+    private Initiative initiative;
 }

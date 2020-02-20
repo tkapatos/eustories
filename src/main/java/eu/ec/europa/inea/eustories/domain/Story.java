@@ -1,9 +1,10 @@
 package eu.ec.europa.inea.eustories.domain;
 
 import lombok.*;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -11,14 +12,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode(of = {"code"})
-@Document(collection = "initiatives")
-public class Initiative {
+@EqualsAndHashCode(of = {"summary"})
+@Document(collection = "epics")
+public class Story {
     private String id;
-    @Indexed
-    private String code;
+    private String summary;
     private String description;
-
     @DBRef
-    private Module module;
+    private Initiative initiative;
+    @DBRef
+    private Epic epic;
+    private List<Criterion> criteria;
 }
