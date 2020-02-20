@@ -37,13 +37,13 @@ class HomeComponent extends Component {
           <Growl ref={(el) => this.growl = el} />
           <div>
             <div className="card">
-            <div className="card-body">
-            <h5 className="card-title">Pick the appropriate module</h5>
-              <DataTable className="card-text" value={this.state.modules}>
-                <Column field="code" header="Code" />
-                <Column field="name" header="Name" />
-                <Column field="description" header="Description" />
-              </DataTable>
+              <div className="card-body">
+                <h5 className="card-title">Pick the appropriate module</h5>
+                <DataTable className="card-text" value={this.state.modules}>
+                  <Column field="code" header="Code" />
+                  <Column field="name" header="Name" />
+                  <Column field="description" header="Description" />
+                </DataTable>
               </div>
           </div>
         </div>
