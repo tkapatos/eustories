@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import HomeComponent from "app/components/home/home.component";
 import AdminComponent from "app/components/admin/admin.component";
+import InitiativeComponent from "app/components/initiative/initiative.component";
 class NavBarComponent extends Component {
     
     render () {
@@ -25,6 +26,7 @@ class NavBarComponent extends Component {
                <div>
                <Route path="/" exact component={HomeComponent}></Route>
                <Route path="/admin"  component={AdminComponent}></Route>
+               <Route path="/initiatives"  component={InitiativeComponent}></Route>
                </div>
             </div>
           );
