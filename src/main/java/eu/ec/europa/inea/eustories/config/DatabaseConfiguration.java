@@ -70,7 +70,7 @@ public class DatabaseConfiguration {
     @Profile(DEV)
     @Bean
     public MongoDbFactory mongoDbFactory(MongoClient mongoClient) {
-        return new SimpleMongoDbFactory(mongoClient, "test");
+        return new SimpleMongoDbFactory(mongoClient, "eustories");
     }
 
     @Profile(DEV)

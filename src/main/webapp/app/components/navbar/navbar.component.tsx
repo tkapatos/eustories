@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom';
 import HomeComponent from "app/components/home/home.component";
 import AdminComponent from "app/components/admin/admin.component";
 import InitiativeComponent from "app/components/initiative/initiative.component";
+import StoryComponent from "app/components/story/story.component";
 class NavBarComponent extends Component {
     
     render () {
@@ -27,6 +28,7 @@ class NavBarComponent extends Component {
                <Route path="/" exact component={HomeComponent}></Route>
                <Route path="/admin"  component={AdminComponent}></Route>
                <Route path="/initiatives/:moduleCode"  component={InitiativeComponent}></Route>
+               <Route path="/stories/:initiativeCode"  component={StoryComponent}></Route>
                </div>
             </div>
           );
