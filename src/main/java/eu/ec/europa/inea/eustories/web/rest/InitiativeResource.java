@@ -1,6 +1,8 @@
 package eu.ec.europa.inea.eustories.web.rest;
 
 import eu.ec.europa.inea.eustories.domain.Initiative;
+import eu.ec.europa.inea.eustories.service.InitiativeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,12 +15,15 @@ import java.util.List;
 @RestController
 public class InitiativeResource {
 
+    InitiativeService initiativeService;
+
+    @Autowired
+    public InitiativeResource(InitiativeService initiativeService) {
+        this.initiativeService = initiativeService;
+    }
+
     @GetMapping("/initiatives/{moduleCode}")
     public ResponseEntity<List<Initiative>> getInitiativesByModule(@PathVariable String moduleCode) {
-        Initiative initiative1 = Initiative.builder().code("TP_1").description("First version of Transparency Platform").build();
-        Initiative initiative2 = Initiative.builder().code("CP").description("Contact Points").build();
-        Initiative initiative3 = Initiative.builder().code("IND").description("CEF2 Indicators").build();
-        List<Initiative> initiatives = Arrays.asList(initiative1,initiative2,initiative3);
-        return new ResponseEntity<>(initiatives, HttpStatus.OK);
+       return new ResponseEntity<>(initiativeService.findByModule(moduleCode), HttpStatus.OK);
     }
 }

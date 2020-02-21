@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ModuleRepository extends MongoRepository<Module, String> {
+    Module findByCode(String code);
 
 }

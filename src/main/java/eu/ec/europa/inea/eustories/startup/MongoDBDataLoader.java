@@ -38,11 +38,11 @@ public class MongoDBDataLoader implements ApplicationRunner {
         Module pfu = Module.builder().code("PFU").name("Project Follow-up").description("Project Follow-up module").build();
         moduleRepository.save(pfu);
 
-        Initiative initiative1 = Initiative.builder().code("TP_1").description("First version of Transparency Platform").module(pciref).build();
+        Initiative initiative1 = Initiative.builder().code("TP_1").description("First version of Transparency Platform stories").module(pciref).build();
         initiativeRepository.save(initiative1);
-        Initiative initiative2 = Initiative.builder().code("CP").description("Contact Points").module(pciref).build();
+        Initiative initiative2 = Initiative.builder().code("CP").description("Contact Points stories").module(pciref).build();
         initiativeRepository.save(initiative2);
-        Initiative initiative3 = Initiative.builder().code("IND").description("CEF2 Indicators").module(pciref).build();
+        Initiative initiative3 = Initiative.builder().code("IND").description("CEF2 Indicators stories").module(pciref).build();
         initiativeRepository.save(initiative3);
 
     }
