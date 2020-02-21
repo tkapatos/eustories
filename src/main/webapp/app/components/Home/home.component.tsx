@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import '../../app.scss';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {Growl} from 'primereact/growl';
 import {DataTable} from 'primereact/datatable';
 import {Column} from 'primereact/column';
+import InitiativeComponent from "app/components/initiative/initiative.component";
 import {SERVER_API_URL} from "../../app.constants";
 
 class HomeComponent extends Component {
@@ -33,7 +35,7 @@ class HomeComponent extends Component {
 
   linkToInitiatives(rowData,column){
     return <div>
-        <a href="http://www.in.gr">{rowData.code}</a>
+        <Link to={"/initiatives/"+rowData.code}>{rowData.code}</Link>
       </div>;
   }
  

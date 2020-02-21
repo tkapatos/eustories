@@ -26,7 +26,7 @@ class NavBarComponent extends Component {
                <div>
                <Route path="/" exact component={HomeComponent}></Route>
                <Route path="/admin"  component={AdminComponent}></Route>
-               <Route path="/initiatives"  component={InitiativeComponent}></Route>
+               <Route path="/initiatives/:moduleCode"  component={InitiativeComponent}></Route>
                </div>
             </div>
           );
