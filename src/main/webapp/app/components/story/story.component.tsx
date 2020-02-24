@@ -14,23 +14,20 @@ class StoryComponent extends Component {
   componentDidMount(){
     const initiativeCode = this.props.match.params.initiativeCode;
 
-    console.log(initiativeCode);
-   
-    /* axios.get(SERVER_API_URL+'/initiatives/'+moduleCode)
+    axios.get(SERVER_API_URL+'/stories/'+initiativeCode)
     .then(response => {
         // handle success
         this.setState({
-          initiatives:response.data
+          stories:response.data
         }) ;
-       
-    })
+     })
     .catch(error => {
-      this.growl.show({severity: 'error', summary: 'Error Message', detail: 'Error while trying to retrieve the initiatives'}); 
+      this.growl.show({severity: 'error', summary: 'Error Message', detail: 'Error while trying to retrieve the stories'}); 
       console.log(error);
     })
     .finally(function () {
       // always executed
-    }); */
+    }); 
 
   }
 

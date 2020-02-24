@@ -14,11 +14,13 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode(of = {"summary"})
-@Document(collection = "epics")
+@Document(collection = "stories")
 public class Story {
     private String id;
     private String summary;
     private String description;
+    private String jiraId;
+    private int points;
     private Constants.Status status;
     @DBRef
     private Initiative initiative;

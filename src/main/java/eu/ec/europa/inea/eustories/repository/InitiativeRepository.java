@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface InitiativeRepository extends MongoRepository<Initiative, String> {
     List<Initiative>  findByModule(Module module);
+    Initiative findByCode(String code);
 }
