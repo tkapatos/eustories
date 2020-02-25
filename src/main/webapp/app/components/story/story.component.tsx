@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import '../../app.scss';
 import CriterionComponent from "./criterion.component";
 import EditStoryComponent from './edit.story.component';
+import Card from "react-bootstrap/Card";
+import Accordion from "react-bootstrap/Accordion";
+import Button from "react-bootstrap/Button";
 
 class StoryComponent extends Component {
 
@@ -43,37 +46,30 @@ class StoryComponent extends Component {
     }
 
     return (
-    <div>
-      <div className="accordion" id={"accordion"+this.props.story.jiraId}>
-      <div className="card">
-        <div className="card-header" id={"heading"+this.props.story.jiraId}>
-          <h2 className="mb-0">
-            <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target={"#collapse"+this.props.story.jiraId} aria-expanded="false" aria-controls={"collapse"+this.props.story.jiraId}>
-              {this.props.story.jiraId} - {this.props.story.summary} ({this.props.story.points} points) 
-            </button>
-            <button type="button" className="btn btn-primary" onClick={(e) => this.editStory(this.props.story.jiraId, e)}>Edit</button>
-          </h2>
-        </div>
-        <div id={"collapse"+this.props.story.jiraId} className="collapse" aria-labelledby={"#heading"+this.props.story.jiraId} data-parent={"#accordion"+this.props.story.jiraId}>
-          <div className="card-body">
-             {this.props.story.criteria.map((criterion, index) => {
-                return <CriterionComponent key={index} criterion={criterion}/>
-              })}
-              
-              {explanations}
-              
-              {toBeDiscussed}
+      <div>
+        <Accordion>
+          <Card>
+            <Card.Header>
+              <Accordion.Toggle as={Button} variant="link" eventKey={this.props.story.jiraId}>
+                {this.props.story.jiraId} - {this.props.story.summary} ({this.props.story.points} points)
+              </Accordion.Toggle>
+              <Button variant="primary" onClick={(e) => this.editStory(this.props.story.jiraId, e)}>Edit</Button>
+            </Card.Header>
+            <Accordion.Collapse eventKey={this.props.story.jiraId}>
+              <Card.Body>
+                {this.props.story.criteria.map((criterion, index) => {
+                  return <CriterionComponent key={index} criterion={criterion} />
+                })}
+                {explanations}
+                {toBeDiscussed}
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
 
-          </div>
-        </div>
+        </Accordion>
+        <EditStoryComponent show={this.state.showEdit} style={{ opacity: 1 }} />
       </div>
-      </div>
-      <EditStoryComponent show={this.state.showEdit} style={{opacity:1}}/>
-   </div>
-  
-
-
-    );
+     );
   }
 }
 

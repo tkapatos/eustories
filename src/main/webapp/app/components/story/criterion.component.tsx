@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../app.scss';
-
-
+import Card from "react-bootstrap/Card";
+import CardGroup from "react-bootstrap/CardGroup";
 class CriterionComponent extends Component {
 
  constructor(props){
@@ -10,25 +10,31 @@ class CriterionComponent extends Component {
  
  render () {
     return (
-    <div>
-        <div className="card-group">
-            <div className="card">
-                <div className="card-body">
-                    <p className="card-text">{this.props.criterion.given}</p>
-                </div>
-            </div>
-            <div className="card">
-                <div className="card-body">
-                    <p className="card-text">{this.props.criterion.when}</p>
-                </div>
-            </div>
-            <div className="card">
-                <div className="card-body">
-                    <p className="card-text">{this.props.criterion.then}</p> 
-                </div>
-            </div>
-        </div>  
-  </div>
+        <div>
+            <CardGroup>
+                <Card>
+                    <Card.Body>
+                        <Card.Text>
+                            {this.props.criterion.given}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                <Card>
+                    <Card.Body>
+                        <Card.Text>
+                            {this.props.criterion.when}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                <Card>
+                    <Card.Body>
+                        <Card.Text>
+                            {this.props.criterion.then}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </CardGroup>
+        </div>
     );
   }
 }
