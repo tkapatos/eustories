@@ -20,6 +20,8 @@ public class Story {
     private String summary;
     private String description;
     private String jiraId;
+    private String explanations;
+    private String toBeDiscussed;
     private int points;
     private Constants.Status status;
     @DBRef

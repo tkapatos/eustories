@@ -13,8 +13,4 @@ public class Criterion {
     private String given;
     private String when;
     private String then;
-    private String explanations;
-    private String toBeDiscussed;
-
-
 }

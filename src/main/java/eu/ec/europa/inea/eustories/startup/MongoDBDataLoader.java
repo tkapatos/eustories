@@ -60,10 +60,10 @@ public class MongoDBDataLoader implements ApplicationRunner {
             "and Word format")
             .when("When the user clicks on the \"Download PCI fiche\" button")
             .then("Then the system is generating one PCI fiche for each selected PCI Code (in word) in the grid in the pdf format.\n" +
-            "All generated documents will be zipped together and a download link will be sent by email to the logegd in user.").explanations("Do something").toBeDiscussed("Discuss something").build();
+            "All generated documents will be zipped together and a download link will be sent by email to the logegd in user.").build();
         Story story9652 = Story.builder().initiative(initiative1).criteria(Arrays.asList(criterion9652_1,criterion9652_2)).description("").
             summary("as an Admin/PM/read only user I want to batch download the PCI Fiche of severals PCIs ").jiraId("9652").status(Constants.Status.TO_D0)
-            .points(5).build();
+            .points(5).toBeDiscussed("Discuss something").build();
         storyRepository.save(story9652);
 
         /* as an Admin/PM/read only user I want to batch download the PCI implementation plan of severals PCIs   */
@@ -73,10 +73,10 @@ public class MongoDBDataLoader implements ApplicationRunner {
         Criterion criterion9653_2 = Criterion.builder().given("Given that there is a user on the PCI List page having selected some PCI codes and Word format")
             .when("When the user clicks on the \"Download PCI fiche\" button")
             .then("Then the system is generating one PCI fiche for each selected PCI Code (in word) in the grid in the pdf format. All generated documents will be zipped together and a download link will be sent by email to the logegd in user.")
-            .explanations("Do something").build();
+            .build();
         Story story9653 = Story.builder().initiative(initiative1).criteria(Arrays.asList(criterion9653_1,criterion9653_2)).description("").
             summary("as an Admin/PM/read only user I want to batch download the PCI implementation plan of severals PCIs").jiraId("9653").status(Constants.Status.TO_D0)
-            .points(3).build();
+            .points(3).explanations("Do something").build();
         storyRepository.save(story9653);
     }
 }
