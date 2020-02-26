@@ -14,16 +14,22 @@ class StoryComponent extends Component {
 
  constructor(props){
      super(props);
-     
- }
+  }
 
 
- editStory(jiraId){
-   console.log(jiraId);
-   this.setState({
-    showEdit:true
+ editStory(storyToEdit){
+  this.setState({
+    showEdit:true,
+    storyToEdit:storyToEdit
   });
+  
  }
+
+ closeEditStory = () => {
+  this.setState({
+    showEdit:false
+  });
+}
  
  render () {
     /** display or not explanations */
@@ -53,7 +59,7 @@ class StoryComponent extends Component {
               <Accordion.Toggle as={Button} variant="link" eventKey={this.props.story.jiraId}>
                 {this.props.story.jiraId} - {this.props.story.summary} ({this.props.story.points} points)
               </Accordion.Toggle>
-              <Button variant="primary" onClick={(e) => this.editStory(this.props.story.jiraId, e)}>Edit</Button>
+              <Button variant="primary" onClick={(e) => this.editStory(this.props.story, e)}>Edit</Button>
             </Card.Header>
             <Accordion.Collapse eventKey={this.props.story.jiraId}>
               <Card.Body>
@@ -67,7 +73,7 @@ class StoryComponent extends Component {
           </Card>
 
         </Accordion>
-        <EditStoryComponent show={this.state.showEdit} style={{ opacity: 1 }} />
+        <EditStoryComponent show={this.state.showEdit} click={this.closeEditStory} storyToEdit={this.state.storyToEdit}/>
       </div>
      );
   }
