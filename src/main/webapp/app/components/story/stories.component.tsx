@@ -11,9 +11,16 @@ class StoriesComponent extends Component {
     stories:[]
   }
 
+  refreshStories(){
+    console.log("called stories");
+  }
+
   componentDidMount(){
     const initiativeCode = this.props.match.params.initiativeCode;
+    this.retrieveStories(initiativeCode);
+  }
 
+  retrieveStories(initiativeCode){
     axios.get(SERVER_API_URL+'/stories/'+initiativeCode)
     .then(response => {
         // handle success
@@ -28,7 +35,6 @@ class StoriesComponent extends Component {
     .finally(function () {
       // always executed
     }); 
-
   }
 
   
@@ -38,7 +44,7 @@ class StoriesComponent extends Component {
           <Growl ref={(el) => this.growl = el} />
          
         {this.state.stories.map((story, index) => {
-          return <StoryComponent key={story.id} story={story}/>
+          return <StoryComponent key={story.id} story={story} refresh={this.refreshStories}/>
         })}
         
         </div>

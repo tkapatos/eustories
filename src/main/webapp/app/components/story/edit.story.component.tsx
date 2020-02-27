@@ -29,7 +29,8 @@ class EditStoryComponent extends Component {
     explanations: nextProps.storyToEdit.explanations,
     toBeDiscussed: nextProps.storyToEdit.toBeDiscussed,
     points: nextProps.storyToEdit.points,
-    status: nextProps.storyToEdit.status
+    status: nextProps.storyToEdit.status,
+    jiraId:nextProps.storyToEdit.jiraId
   });
  }
 
@@ -43,8 +44,8 @@ class EditStoryComponent extends Component {
 }
 
 handleSubmit(event) {
-  console.log(this.state);
   event.preventDefault();
+  this.props.save(this.state);
 }
  
  render () {
@@ -114,7 +115,7 @@ handleSubmit(event) {
       </Modal.Body>
       <Modal.Footer>
       <Button variant="primary" onClick={this.handleSubmit}>Save changes </Button>
-      <Button variant="secondary" onClick={this.props.click} >Close</Button>
+      <Button variant="secondary" onClick={this.props.cancel} >Close</Button>
       </Modal.Footer>
     </Modal>
   

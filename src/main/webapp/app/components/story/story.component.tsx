@@ -6,7 +6,8 @@ import Card from "react-bootstrap/Card";
 import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
-
+import axios from 'axios';
+import {SERVER_API_URL} from "../../app.constants";
 class StoryComponent extends Component {
 
   state = {
@@ -26,10 +27,32 @@ class StoryComponent extends Component {
   
  }
 
- closeEditStory = () => {
+ cancelEditStory = () => {
   this.setState({
     showEdit:false
   });
+}
+
+saveStory = (story) => {
+  console.log('enter');
+  console.log(story);
+  this.setState({
+    showEdit:false
+  });
+  
+  axios.put(SERVER_API_URL+'/stories',story)
+  .then(response => {
+      // handle success
+      this.props.refresh();
+   })
+  .catch(error => {
+    //this.growl.show({severity: 'error', summary: 'Error Message', detail: 'Error while trying to retrieve the stories'}); 
+    console.log(error);
+  })
+  .finally(function () {
+    // always executed
+  }); 
+  
 }
  
  render () {
@@ -97,7 +120,7 @@ class StoryComponent extends Component {
           </Card>
 
         </Accordion>
-        <EditStoryComponent show={this.state.showEdit} click={this.closeEditStory} storyToEdit={this.state.storyToEdit}/>
+        <EditStoryComponent show={this.state.showEdit} cancel={this.cancelEditStory} save={this.saveStory} storyToEdit={this.state.storyToEdit}/>
       </div>
      );
   }

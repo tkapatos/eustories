@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface StoryService {
     List<Story> findByInitiative(String initiativeCode);
+    void saveStory(Story storyToSave);
 }
