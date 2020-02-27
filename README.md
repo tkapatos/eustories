@@ -22,9 +22,9 @@ auto-refreshes when files change on your hard drive.
     ./mvnw
 
 if do not have administrative rights run the client with
-  
- npm start
-  
+
+npm start
+
 Otherwise run the client with
 
     mpm start-proxy
@@ -179,3 +179,6 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 
 ## Things to do
 
+show success/error message on save story
+update client with new story
+clean up client if needed
