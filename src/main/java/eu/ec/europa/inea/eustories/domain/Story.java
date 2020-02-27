@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode(of = {"summary"})
+@EqualsAndHashCode(of = {"jiraId"})
 @Document(collection = "stories")
 public class Story {
     private String id;

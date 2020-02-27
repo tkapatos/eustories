@@ -5,6 +5,7 @@ import EditStoryComponent from './edit.story.component';
 import Card from "react-bootstrap/Card";
 import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
+import Badge from "react-bootstrap/Badge";
 
 class StoryComponent extends Component {
 
@@ -51,6 +52,28 @@ class StoryComponent extends Component {
                       </div>
     }
 
+    /** display status   */
+    let storyStatus;
+    switch(this.props.story.status){
+      case "TO_D0":
+        storyStatus = <Badge variant="danger">To Do</Badge>
+        break;
+      case "IN_PROGRESS":
+        storyStatus = <Badge variant="danger">In Progress</Badge>
+      break;
+      case "RESOLVED":
+        storyStatus = <Badge variant="success">Resolved</Badge>
+      break;
+      case "IN_REVIEW":
+        storyStatus = <Badge variant="info">In Review</Badge>
+      break;
+      case "COMPLETED":
+        storyStatus = <Badge variant="success">Completed</Badge>
+      break;
+      default:
+    }
+
+
     return (
       <div>
         <Accordion>
@@ -59,6 +82,7 @@ class StoryComponent extends Component {
               <Accordion.Toggle as={Button} variant="link" eventKey={this.props.story.jiraId}>
                 {this.props.story.jiraId} - {this.props.story.summary} ({this.props.story.points} points)
               </Accordion.Toggle>
+              {storyStatus}&nbsp;
               <Button variant="primary" onClick={(e) => this.editStory(this.props.story, e)}>Edit</Button>
             </Card.Header>
             <Accordion.Collapse eventKey={this.props.story.jiraId}>

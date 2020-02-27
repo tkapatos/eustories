@@ -15,13 +15,13 @@ header {
 
   .logo {
     float: left;
-    background-image: url("../content/images/ecLogo.png");
+    background-image: url('../content/images/ecLogo.png');
     background-size: cover;
 
     z-index: 1000;
     width: 230px;
     height: 60px;
-    margin-top: 0.20rem;
+    margin-top: 0.2rem;
     cursor: pointer;
   }
 
@@ -50,5 +50,10 @@ header {
     color: #004494 !important;
     font-weight: bold;
   }
+}
+
+.modal-70w {
+  width: 70%;
+  max-width: none !important;
 }
 /* jhipster-needle-scss-add-main JHipster will add new css style */
