@@ -180,5 +180,4 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 ## Things to do
 
 show success/error message on save story
-update client with new story
 clean up client if needed
