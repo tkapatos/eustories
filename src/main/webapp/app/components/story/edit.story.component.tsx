@@ -23,15 +23,17 @@ class EditStoryComponent extends Component {
  }
 
  componentWillReceiveProps(nextProps){
-  this.setState({
-    summary:nextProps.storyToEdit.summary,
-    description:nextProps.storyToEdit.description,
-    explanations: nextProps.storyToEdit.explanations,
-    toBeDiscussed: nextProps.storyToEdit.toBeDiscussed,
-    points: nextProps.storyToEdit.points,
-    status: nextProps.storyToEdit.status,
-    jiraId:nextProps.storyToEdit.jiraId
-  });
+   if(nextProps.storyToEdit){
+    this.setState({
+      summary:nextProps.storyToEdit.summary,
+      description:nextProps.storyToEdit.description,
+      explanations: nextProps.storyToEdit.explanations,
+      toBeDiscussed: nextProps.storyToEdit.toBeDiscussed,
+      points: nextProps.storyToEdit.points,
+      status: nextProps.storyToEdit.status,
+      jiraId:nextProps.storyToEdit.jiraId
+    });
+  }
  }
 
  handleInputChange(event) {
@@ -47,14 +49,14 @@ handleSubmit(event) {
   event.preventDefault();
   this.props.save(this.state);
 }
- 
+
  render () {
 
     let jiraId;
     if(this.props.storyToEdit){
       jiraId = this.props.storyToEdit.jiraId;
     }
-  
+
     return (
       <Modal show={this.props.show}  dialogClassName="modal-70w" >
       <Modal.Header>Edit story {jiraId}</Modal.Header>
@@ -74,7 +76,7 @@ handleSubmit(event) {
           </Form.Group>
           </Col>
           </Form.Row>
-         
+
           <Form.Row>
           <Col>
           <Form.Group controlId="explanations">
@@ -88,7 +90,7 @@ handleSubmit(event) {
           <Form.Control as="textarea" rows="3" name='toBeDiscussed' value={this.state.toBeDiscussed} onChange={this.handleInputChange}/>
           </Form.Group>
           </Col>
-         </Form.Row>  
+         </Form.Row>
 
           <Form.Row>
           <Col>
@@ -118,7 +120,7 @@ handleSubmit(event) {
       <Button variant="secondary" onClick={this.props.cancel} >Close</Button>
       </Modal.Footer>
     </Modal>
-  
+
     );
   }
 }

@@ -24,7 +24,7 @@ class StoryComponent extends Component {
     showEdit:true,
     storyToEdit:storyToEdit
   });
-  
+
  }
 
  cancelEditStory = () => {
@@ -34,27 +34,25 @@ class StoryComponent extends Component {
 }
 
 saveStory = (story) => {
-  console.log('enter');
-  console.log(story);
   this.setState({
     showEdit:false
   });
-  
+
   axios.put(SERVER_API_URL+'/stories',story)
   .then(response => {
-      // handle success
-      this.props.refresh();
+        // notify the parent component to refresh the stories
+        this.props.refresh();
    })
   .catch(error => {
-    //this.growl.show({severity: 'error', summary: 'Error Message', detail: 'Error while trying to retrieve the stories'}); 
+    // this.growl.show({severity: 'error', summary: 'Error Message', detail: 'Error while trying to retrieve the stories'});
     console.log(error);
   })
   .finally(function () {
-    // always executed
-  }); 
-  
+
+  });
+
 }
- 
+
  render () {
     /** display or not explanations */
     let explanations;

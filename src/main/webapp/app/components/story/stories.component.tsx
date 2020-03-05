@@ -6,18 +6,27 @@ import StoryComponent from "./story.component";
 import {SERVER_API_URL} from "../../app.constants";
 
 class StoriesComponent extends Component {
- 
+
   state = {
-    stories:[]
+    stories:[],
+    initiativeCode:' '
   }
 
+  constructor(props){
+       super(props);
+       this.refreshStories = this.refreshStories.bind(this);
+   }
+
   refreshStories(){
-    console.log("called stories");
+    this.retrieveStories(this.state.initiativeCode);
   }
 
   componentDidMount(){
-    const initiativeCode = this.props.match.params.initiativeCode;
-    this.retrieveStories(initiativeCode);
+    const code = this.props.match.params.initiativeCode;
+    this.setState({
+      initiativeCode : code
+    });
+    this.retrieveStories(code);
   }
 
   retrieveStories(initiativeCode){
@@ -27,26 +36,27 @@ class StoriesComponent extends Component {
         this.setState({
           stories:response.data
         }) ;
+
      })
     .catch(error => {
-      this.growl.show({severity: 'error', summary: 'Error Message', detail: 'Error while trying to retrieve the stories'}); 
+      this.growl.show({severity: 'error', summary: 'Error Message', detail: 'Error while trying to retrieve the stories'});
       console.log(error);
     })
     .finally(function () {
       // always executed
-    }); 
+    });
   }
 
-  
+
   render () {
     return (
       <div className="container-fluid">
           <Growl ref={(el) => this.growl = el} />
-         
+
         {this.state.stories.map((story, index) => {
           return <StoryComponent key={story.id} story={story} refresh={this.refreshStories}/>
         })}
-        
+
         </div>
     );
   }
