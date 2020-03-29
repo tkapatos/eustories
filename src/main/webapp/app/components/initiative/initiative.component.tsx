@@ -7,7 +7,11 @@ import {DataTable} from 'primereact/datatable';
 import {Column} from 'primereact/column';
 import {SERVER_API_URL} from "../../app.constants";
 
-class InitiativeComponent extends Component {
+interface InputProps {
+  match:any
+}
+
+class InitiativeComponent extends Component<InputProps> {
  
   state = {
     initiatives:[]

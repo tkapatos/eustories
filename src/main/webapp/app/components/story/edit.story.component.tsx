@@ -5,19 +5,36 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Col } from "react-bootstrap";
 
+interface InputProps {
+   storyToEdit:any,
+   show:false,
+   cancel:any,
+   save:any
+}
 
-class EditStoryComponent extends Component {
+interface StateProps {
+   summary: '',
+   description:'',
+   explanations:'',
+   toBeDiscussed:'',
+   points:0,
+   status:'',
+   jiraId:''
+}
+
+class EditStoryComponent extends Component<InputProps,StateProps> {
 
  constructor(props){
      super(props);
      this.state = {
-       summary: '',
-       description:'',
-       explanations:'',
-       toBeDiscussed:'',
-       points:0,
-       status:''
-    };
+      summary: '',
+      description:'',
+      explanations:'',
+      toBeDiscussed:'',
+      points:0,
+      status:'',
+      jiraId:''
+   };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
  }
@@ -96,7 +113,7 @@ handleSubmit(event) {
           <Col>
           <Form.Group controlId="points">
           <Form.Label>Points</Form.Label>
-          <Form.Control type="text"  name='points' value={this.state.points} onChange={this.handleInputChange}/>
+          <Form.Control type="text"  name='points' value={""+this.state.points} onChange={this.handleInputChange}/>
           </Form.Group>
           </Col>
           <Col>

@@ -10,22 +10,34 @@ import axios from 'axios';
 import {SERVER_API_URL} from "../../app.constants";
 import Story from '../../entities/Story';
 
-class StoryComponent extends Component {
+interface InputProps {
+  storyHasBeenUpdated:any,
+  storyWasNotUpdated:any,
+  story:Story,
+}
+
+interface StateProps {
+  showEdit:boolean,
+  storyToEdit:any
+}
+
+class StoryComponent extends Component<InputProps,StateProps> {
 
   state = {
-    showEdit: false,
+    showEdit : false,
     storyToEdit:Story
   };
 
  constructor(props){
      super(props);
+     
   }
 
  /*
  * Display modal for editing the story
  * pass the story to edit story component
  */
- editStory(storyToEdit){
+ editStory(storyToEdit,event){
   this.setState({
     showEdit:true,
     storyToEdit:storyToEdit
