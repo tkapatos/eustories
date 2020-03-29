@@ -177,7 +177,18 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 [leaflet]: https://leafletjs.com/
 [definitelytyped]: https://definitelytyped.org/
 
-## Things to do
+## Development specific
 
-show success/error message on save story
-clean up client if needed
+To start the back-end:
+
+    mvn spring-boot:run
+
+To start the client with Admin rights:
+
+    yarn start
+
+To start the client without Admin rights:
+
+    yarn start-proxy
+
+## Things to do
