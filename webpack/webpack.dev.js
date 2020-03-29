@@ -36,7 +36,7 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
       }
     ]
   },
-  /*devServer: {
+  devServer: {
     stats: options.stats,
    hot: true, contentBase: './target/classes/static/',
     proxy: [{
@@ -52,13 +52,13 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
     target: `http${options.tls ? 's' : ''}://localhost:8080`,
      secure: false,
     changeOrigin: options.tls
-}],*/
+}],
     watchOptions: {
       ignored: /node_modules/
     },
-   /* https: options.tls,
+   https: options.tls,
     historyApiFallback: true
-  },*/
+  },
   stats: process.env.JHI_DISABLE_WEBPACK_LOGS ? 'none' : options.stats,
   plugins: [
     process.env.JHI_DISABLE_WEBPACK_LOGS
@@ -76,20 +76,20 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
       https: options.tls,
       host: 'localhost',
       port: 9000,
-      server: './target/classes/static/',
-     // proxy: {
-     //   target: `http${options.tls ? 's' : ''}://localhost:9060`,
-     //     proxyOptions: {
-      //        changeOrigin: false  //pass the Host header to the backend unchanged  https://github.com/Browsersync/browser-sync/issues/430
-       //   }
-     // },
+     // server: './target/classes/static/',
+      proxy: {
+        target: `http${options.tls ? 's' : ''}://localhost:9060`,
+          proxyOptions: {
+             changeOrigin: false  //pass the Host header to the backend unchanged  https://github.com/Browsersync/browser-sync/issues/430
+        }
+      },
       socket: {
         clients: {
           heartbeatTimeout: 60000
         }
       }
     }, {
-      //reload: false
+     reload: false
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
