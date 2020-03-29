@@ -4,7 +4,7 @@ export class Story {
   public status: string;
   public jiraId: string;
   public summary: string;
-  public points: Number;
+  public points: number;
   public criteria: [];
 }
 export default Story;
