@@ -22,6 +22,7 @@ class StoriesComponent extends Component {
   */
   refreshStories(){
     this.retrieveStories(this.state.initiativeCode);
+    this.growl.show({severity: 'success', summary: 'Success Message', detail: 'The story was saved succesfully'});
   }
 
   componentDidMount(){
