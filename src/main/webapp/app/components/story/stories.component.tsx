@@ -12,6 +12,8 @@ class StoriesComponent extends Component {
     initiativeCode:' '
   }
 
+   growl:Growl;
+
   constructor(props){
        super(props);
        this.storyHasBeenUpdated = this.storyHasBeenUpdated.bind(this);

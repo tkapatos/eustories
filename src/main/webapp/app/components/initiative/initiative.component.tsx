@@ -13,6 +13,8 @@ class InitiativeComponent extends Component {
     initiatives:[]
   }
 
+  growl:Growl;
+
   componentDidMount(){
     const moduleCode = this.props.match.params.moduleCode;
    

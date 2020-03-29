@@ -13,7 +13,9 @@ export class App extends Component {
   state = {
     username:''
   }
- 
+
+   growl:Growl;
+
   constructor(props){
     super(props);
   }
@@ -35,7 +37,7 @@ export class App extends Component {
     });
 
   }
-  
+
   render () {
     return (
       <BrowserRouter>

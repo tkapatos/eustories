@@ -2,12 +2,19 @@ import React, { Component } from 'react';
 import '../../app.scss';
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
-class CriterionComponent extends Component {
 
+interface CriterionInputProps {
+   criterion: {
+    given:string,
+    when:string,
+    then:string
+   };
+ }
+class CriterionComponent extends Component<CriterionInputProps> {
  constructor(props){
      super(props);
  }
- 
+
  render () {
     return (
         <div>

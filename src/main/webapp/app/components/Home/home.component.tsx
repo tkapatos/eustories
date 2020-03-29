@@ -13,6 +13,8 @@ class HomeComponent extends Component {
   state = {
     modules:[]
   }
+ growl:Growl;
+ 
 
   componentDidMount(){
     axios.get(SERVER_API_URL+'/modules')

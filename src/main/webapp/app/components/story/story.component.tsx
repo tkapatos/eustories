@@ -8,10 +8,13 @@ import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
 import axios from 'axios';
 import {SERVER_API_URL} from "../../app.constants";
+import Story from '../../entities/Story';
+
 class StoryComponent extends Component {
 
   state = {
-    showEdit: false
+    showEdit: false,
+    storyToEdit:Story
   };
 
  constructor(props){
