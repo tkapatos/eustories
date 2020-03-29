@@ -17,6 +17,9 @@ class StoriesComponent extends Component {
        this.refreshStories = this.refreshStories.bind(this);
    }
 
+  /*
+  * called from story.component when a story has been updated
+  */
   refreshStories(){
     this.retrieveStories(this.state.initiativeCode);
   }

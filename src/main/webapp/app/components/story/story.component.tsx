@@ -18,21 +18,32 @@ class StoryComponent extends Component {
      super(props);
   }
 
-
+ /*
+ * Display modal for editing the story
+ * pass the story to edit story component
+ */
  editStory(storyToEdit){
   this.setState({
     showEdit:true,
     storyToEdit:storyToEdit
   });
+}
 
- }
-
+ /*
+  * Hides modal for editing the story
+  */
  cancelEditStory = () => {
   this.setState({
     showEdit:false
   });
 }
 
+/*
+ * called from edit story component when a story is saved
+ * saves the story in the back-end
+ * closes the modal
+ * notifies the stories component that a story has been updated
+*/
 saveStory = (story) => {
   this.setState({
     showEdit:false
