@@ -14,15 +14,23 @@ class StoriesComponent extends Component {
 
   constructor(props){
        super(props);
-       this.refreshStories = this.refreshStories.bind(this);
+       this.storyHasBeenUpdated = this.storyHasBeenUpdated.bind(this);
+       this.storyWasNotUpdated = this.storyWasNotUpdated.bind(this);
    }
 
   /*
-  * called from story.component when a story has been updated
+    * called from story.component when a story has been updated
+   */
+  storyHasBeenUpdated(){
+     this.retrieveStories(this.state.initiativeCode);
+     this.growl.show({severity: 'success', summary: 'Success Message', detail: 'The story was saved succesfully'});
+  }
+
+  /*
+   * called from story.component when there was a server error when was updated
   */
-  refreshStories(){
-    this.retrieveStories(this.state.initiativeCode);
-    this.growl.show({severity: 'success', summary: 'Success Message', detail: 'The story was saved succesfully'});
+  storyWasNotUpdated(){
+     this.growl.show({severity: 'error', summary: 'Error Message', detail: 'The was an error during the update of the story'});
   }
 
   componentDidMount(){
@@ -58,7 +66,7 @@ class StoriesComponent extends Component {
           <Growl ref={(el) => this.growl = el} />
 
         {this.state.stories.map((story, index) => {
-          return <StoryComponent key={story.id} story={story} refresh={this.refreshStories}/>
+          return <StoryComponent key={story.id} story={story} storyHasBeenUpdated={this.storyHasBeenUpdated} storyWasNotUpdated={this.storyWasNotUpdated}/>
         })}
 
         </div>

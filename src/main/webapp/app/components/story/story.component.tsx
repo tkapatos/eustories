@@ -51,11 +51,11 @@ saveStory = (story) => {
 
   axios.put(SERVER_API_URL+'/stories',story)
   .then(response => {
-        // notify the parent component to refresh the stories
-        this.props.refresh();
+    // notify the parent component to refresh the stories
+    this.props.storyHasBeenUpdated();
    })
   .catch(error => {
-    // this.growl.show({severity: 'error', summary: 'Error Message', detail: 'Error while trying to retrieve the stories'});
+    this.props.storyWasNotUpdated();
     console.log(error);
   })
   .finally(function () {
