@@ -40,7 +40,7 @@ class EditStoryComponent extends Component<InputProps,StateProps> {
  }
 
  componentWillReceiveProps(nextProps){
-   if(nextProps.storyToEdit){
+  if(nextProps.storyToEdit){
     this.setState({
       summary:nextProps.storyToEdit.summary,
       description:nextProps.storyToEdit.description,
@@ -69,16 +69,30 @@ handleSubmit(event) {
 
  render () {
 
-    let jiraId;
-    if(this.props.storyToEdit){
-      jiraId = this.props.storyToEdit.jiraId;
+    let jiraIdValue;
+    let jiraIdElement;
+    if(this.props.storyToEdit.jiraId){
+      jiraIdValue = this.props.storyToEdit.jiraId;
+    }else{
+      jiraIdElement = <Form.Row>
+      <Col>
+        <Form.Group controlId="jiraId">
+        <Form.Label>Jira id</Form.Label>
+        <Form.Control type="text"  name='jiraId' value={""+this.state.jiraId} onChange={this.handleInputChange}/>
+        </Form.Group>
+        </Col>
+        <Col>
+        &nbsp;
+        </Col>
+        </Form.Row>
     }
 
     return (
       <Modal show={this.props.show}  dialogClassName="modal-70w" >
-      <Modal.Header>Edit story {jiraId}</Modal.Header>
+      <Modal.Header>Edit story {jiraIdValue}</Modal.Header>
       <Modal.Body>
         <Form onSubmit={this.handleSubmit}>
+        {jiraIdElement}
         <Form.Row>
         <Col>
           <Form.Group controlId="summary">
@@ -120,6 +134,7 @@ handleSubmit(event) {
           <Form.Group controlId="status">
           <Form.Label>Status</Form.Label>
           <Form.Control as="select" rows="3" name='status' value={this.state.status} onChange={this.handleInputChange}>
+            <option>Select status</option>
             <option>TO_D0</option>
             <option>IN_PROGRESS</option>
             <option>RESOLVED</option>

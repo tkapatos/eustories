@@ -7,8 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.mail.MessagingException;
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -28,7 +27,7 @@ public class StoryResource {
     }
 
     @PutMapping("/stories")
-    public ResponseEntity saveStory(@RequestBody Story story) {
+    public ResponseEntity saveStory(@Valid @RequestBody Story story) {
         log.info("Story to be saved",story);
         storyService.saveStory(story);
         return ResponseEntity.accepted().build();

@@ -15,9 +15,9 @@
 
 logging:
   level:
-    ROOT: DEBUG
+    ROOT: INFO
     io.github.jhipster: DEBUG
-    eu.ec.europa.inea.eustories: DEBUG
+    eu.ec.europa.inea.eustories: INFO
 
 spring:
   profiles:

@@ -1,5 +1,6 @@
 package eu.ec.europa.inea.eustories.service.impl;
 
+import eu.ec.europa.inea.eustories.domain.Criterion;
 import eu.ec.europa.inea.eustories.domain.Story;
 import eu.ec.europa.inea.eustories.repository.InitiativeRepository;
 import eu.ec.europa.inea.eustories.repository.StoryRepository;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 @Slf4j
@@ -44,6 +46,7 @@ public class StoryServiceImpl implements StoryService {
             story.setPoints(storyToSave.getPoints());
             story.setStatus(storyToSave.getStatus());
         }else{
+            log.info(""+storyToSave.getInitiative().getCode());
             story = Story.builder().jiraId(storyToSave.getJiraId())
                 .summary(storyToSave.getSummary())
                 .description(storyToSave.getDescription())
@@ -51,9 +54,12 @@ public class StoryServiceImpl implements StoryService {
                 .toBeDiscussed(storyToSave.getToBeDiscussed())
                 .points(storyToSave.getPoints())
                 .status(storyToSave.getStatus())
+                .initiative(initiativeRepository.findByCode(storyToSave.getInitiative().getCode()))
+                .criteria(new ArrayList<Criterion>())
                 .build();
         }
-        storyRepository.save(story);
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        story = storyRepository.save(story);
+        log.info(""+story);
+
     }
 }

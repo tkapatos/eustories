@@ -30,7 +30,7 @@ class StoryComponent extends Component<InputProps,StateProps> {
 
  constructor(props){
      super(props);
-     
+
   }
 
  /*
@@ -122,7 +122,8 @@ saveStory = (story) => {
 
 
     return (
-      <div>
+       <div className="row">
+                <div className="col-12">
         <Accordion>
           <Card>
             <Card.Header>
@@ -145,7 +146,7 @@ saveStory = (story) => {
 
         </Accordion>
         <EditStoryComponent show={this.state.showEdit} cancel={this.cancelEditStory} save={this.saveStory} storyToEdit={this.state.storyToEdit}/>
-      </div>
+      </div></div>
      );
   }
 }
