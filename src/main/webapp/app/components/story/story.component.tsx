@@ -6,6 +6,8 @@ import Card from "react-bootstrap/Card";
 import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
+import {DataTable} from 'primereact/datatable';
+import {Column} from 'primereact/column';
 import axios from 'axios';
 import {SERVER_API_URL} from "../../app.constants";
 import Story from '../../entities/Story';
@@ -135,9 +137,14 @@ saveStory = (story) => {
             </Card.Header>
             <Accordion.Collapse eventKey={this.props.story.jiraId}>
               <Card.Body>
-                {this.props.story.criteria.map((criterion, index) => {
+                {/* this.props.story.criteria.map((criterion, index) => {
                   return <CriterionComponent key={index} criterion={criterion} />
-                })}
+                }) */}
+                 <DataTable className="card-text" value={this.props.story.criteria}>
+                    <Column field="given" header="Given"  />
+                    <Column field="when" header="When" />
+                    <Column field="then" header="Then" />
+                 </DataTable>
                 {explanations}
                 {toBeDiscussed}
               </Card.Body>
