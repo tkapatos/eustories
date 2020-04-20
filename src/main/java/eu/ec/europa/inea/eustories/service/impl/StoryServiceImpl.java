@@ -2,6 +2,7 @@ package eu.ec.europa.inea.eustories.service.impl;
 
 import eu.ec.europa.inea.eustories.domain.Criterion;
 import eu.ec.europa.inea.eustories.domain.Story;
+import eu.ec.europa.inea.eustories.exceptions.DataNotFoundException;
 import eu.ec.europa.inea.eustories.repository.InitiativeRepository;
 import eu.ec.europa.inea.eustories.repository.StoryRepository;
 import eu.ec.europa.inea.eustories.service.StoryService;
@@ -59,7 +60,13 @@ public class StoryServiceImpl implements StoryService {
                 .build();
         }
         story = storyRepository.save(story);
-        log.info(""+story);
+    }
 
+    @Override
+    public void saveStoryCriteria(String jiraId, List<Criterion> criteria) {
+        Story story = storyRepository.findByJiraId(jiraId).orElseThrow(() ->
+            new DataNotFoundException(("Could not find story with jiraId " + jiraId)));
+        story.setCriteria(criteria);
+        story = storyRepository.save(story);
     }
 }

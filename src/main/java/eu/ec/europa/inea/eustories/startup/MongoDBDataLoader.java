@@ -51,12 +51,12 @@ public class MongoDBDataLoader implements ApplicationRunner {
         initiativeRepository.save(initiative3);
 
         /* as an Admin/PM/read only user I want to batch download the PCI Fiche of severals PCIs  */
-        Criterion criterion9652_1 = Criterion.builder().given("Given that there is a user on the PCI List page having selected some PCI codes\n" +
+        Criterion criterion9652_1 = Criterion.builder().index(1).given("Given that there is a user on the PCI List page having selected some PCI codes\n" +
             "and PDF format")
             .when("When the user clicks on the \"Download PCI fiche\" button")
             .then("Then the system is generating one PCI fiche (in PDF) for each selected PCI Code in the grid in the pdf format.\n" +
             "All generated documents will be zipped together and a download link will be sent by email to the logegd in user.").build();
-        Criterion criterion9652_2 = Criterion.builder().given("Given that there is a user on the PCI List page having selected some PCI codes\n" +
+        Criterion criterion9652_2 = Criterion.builder().index(2).given("Given that there is a user on the PCI List page having selected some PCI codes\n" +
             "and Word format")
             .when("When the user clicks on the \"Download PCI fiche\" button")
             .then("Then the system is generating one PCI fiche for each selected PCI Code (in word) in the grid in the pdf format.\n" +
@@ -67,10 +67,10 @@ public class MongoDBDataLoader implements ApplicationRunner {
         storyRepository.save(story9652);
 
         /* as an Admin/PM/read only user I want to batch download the PCI implementation plan of severals PCIs   */
-        Criterion criterion9653_1 = Criterion.builder().given("Given that there is a user on the PCI List page having selected some PCI codes and PDF format")
+        Criterion criterion9653_1 = Criterion.builder().index(1).given("Given that there is a user on the PCI List page having selected some PCI codes and PDF format")
             .when("When the user clicks on the \"Download PCI Implementation plan\" button")
             .then("Then the system is generating one PCI Implementation plan (in Pdf) for each selected PCI Code in the grid in the pdf format. All generated documents will be zipped together and a download link will be sent by email to the logegd in user.").build();
-        Criterion criterion9653_2 = Criterion.builder().given("Given that there is a user on the PCI List page having selected some PCI codes and Word format")
+        Criterion criterion9653_2 = Criterion.builder().index(2).given("Given that there is a user on the PCI List page having selected some PCI codes and Word format")
             .when("When the user clicks on the \"Download PCI fiche\" button")
             .then("Then the system is generating one PCI fiche for each selected PCI Code (in word) in the grid in the pdf format. All generated documents will be zipped together and a download link will be sent by email to the logegd in user.")
             .build();

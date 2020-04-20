@@ -1,5 +1,6 @@
 package eu.ec.europa.inea.eustories.web.rest;
 
+import eu.ec.europa.inea.eustories.domain.Criterion;
 import eu.ec.europa.inea.eustories.domain.Story;
 import eu.ec.europa.inea.eustories.service.StoryService;
 import lombok.extern.slf4j.Slf4j;
@@ -32,4 +33,14 @@ public class StoryResource {
         storyService.saveStory(story);
         return ResponseEntity.accepted().build();
     }
+
+    @PutMapping("/stories/{jiraId}/criteria")
+    public ResponseEntity saveStoryCriteria(@PathVariable String jiraId,
+                                            @Valid @RequestBody List<Criterion> criteria) {
+        log.info("Criteria to be saved",criteria);
+        storyService.saveStoryCriteria(jiraId,criteria);
+        return ResponseEntity.accepted().build();
+    }
+
+
 }

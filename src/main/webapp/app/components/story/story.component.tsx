@@ -7,6 +7,7 @@ import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
 import {DataTable} from 'primereact/datatable';
+import {InputTextarea} from 'primereact/inputtextarea';
 import {Column} from 'primereact/column';
 import axios from 'axios';
 import {SERVER_API_URL} from "../../app.constants";
@@ -20,20 +21,68 @@ interface InputProps {
 
 interface StateProps {
   showEdit:boolean,
-  storyToEdit:any
+  storyToEdit:any,
+  criteria:any
 }
 
 class StoryComponent extends Component<InputProps,StateProps> {
 
   state = {
     showEdit : false,
-    storyToEdit:Story
+    storyToEdit:Story,
+    criteria:[]
   };
+
+  clonedCriteria = {};
 
  constructor(props){
      super(props);
-
+     this.onRowEditInit = this.onRowEditInit.bind(this);
+     this.onRowEditSave = this.onRowEditSave.bind(this);
+     this.onRowEditCancel = this.onRowEditCancel.bind(this);  
+     this.editorForRowEditing = this.editorForRowEditing.bind(this);
+     this.deleteCriterionButton = this.deleteCriterionButton.bind(this);
   }
+
+  componentDidMount(){
+      this.setState({
+        criteria:this.props.story.criteria
+      });
+  }
+
+  
+/* triggered upon every change in a textarea */
+onEditorValueChangeForRowEditing(props, value) {
+  const updatedCriteria = [...props.value];
+  updatedCriteria[props.rowIndex][props.field] = value;
+  this.setState({criteria: updatedCriteria});
+}
+
+/** triggered when the user clicks to edit */
+onRowEditInit(event) {
+ this.clonedCriteria = {...event.data};
+}
+
+/** triggered when the user clicks to save a criterion*/
+onRowEditSave(event) {
+  this.saveCriteria([...this.state.criteria]);
+}
+
+/** triggered when the user clicks to cancel */
+onRowEditCancel(event) {
+  const criteria = [...this.state.criteria];
+  criteria[event.index] = this.clonedCriteria;
+  delete this.clonedCriteria;
+  this.setState({
+      criteria: criteria
+  })
+ 
+}
+
+editorForRowEditing(props, field) {
+  return <InputTextarea type="text" rows={5} cols={30} value={props.rowData[field]} 
+  onChange={(e) => this.onEditorValueChangeForRowEditing(props, e.target.value)} />;
+}
 
  /*
  * Display modal for editing the story
@@ -52,6 +101,24 @@ class StoryComponent extends Component<InputProps,StateProps> {
  cancelEditStory = () => {
   this.setState({
     showEdit:false
+  });
+}
+
+saveCriteria = (criteria) =>{
+  axios.put(SERVER_API_URL+'/stories/'+this.props.story.jiraId+"/criteria",criteria)
+  .then(response => {
+    this.setState({
+      criteria:criteria
+    });
+    // notify the parent component to refresh the stories
+    this.props.storyHasBeenUpdated();
+   })
+  .catch(error => {
+    this.props.storyWasNotUpdated();
+    console.log(error);
+  })
+  .finally(function () {
+
   });
 }
 
@@ -79,6 +146,18 @@ saveStory = (story) => {
 
   });
 
+}
+
+deleteCriterion(index:number){
+  let criteria = [...this.state.criteria];
+  criteria = criteria.filter(obj => obj.index !== index);
+  this.saveCriteria(criteria);
+}
+
+deleteCriterionButton(rowData,column){
+  return <div>
+      <Button variant="danger" size="sm" onClick={() => this.deleteCriterion(rowData.index)}>Delete</Button>
+    </div>;
 }
 
  render () {
@@ -140,10 +219,18 @@ saveStory = (story) => {
                 {/* this.props.story.criteria.map((criterion, index) => {
                   return <CriterionComponent key={index} criterion={criterion} />
                 }) */}
-                 <DataTable className="card-text" value={this.props.story.criteria}>
-                    <Column field="given" header="Given"  />
-                    <Column field="when" header="When" />
-                    <Column field="then" header="Then" />
+                 <DataTable className="card-text" value={this.state.criteria} 
+                 onRowEditInit={this.onRowEditInit} onRowEditSave={this.onRowEditSave} onRowEditCancel={this.onRowEditCancel}
+                 editMode="row" >
+                    <Column field="given" header="Given" 
+                    editor={(props) => this.editorForRowEditing(props, 'given')} />
+                    <Column field="when" header="When" 
+                    editor={(props) => this.editorForRowEditing(props, 'when')}/>
+                    <Column field="then" header="Then" 
+                    editor={(props) => this.editorForRowEditing(props, 'then')}/>
+                    <Column rowEditor={true} style={{'width': '70px', 'textAlign': 'center'}}></Column>
+                    <Column style={{'width': '80px', 'textAlign': 'center'}} 
+                    body={this.deleteCriterionButton} />
                  </DataTable>
                 {explanations}
                 {toBeDiscussed}
