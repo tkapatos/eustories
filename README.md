@@ -190,5 +190,3 @@ To start the client with Admin rights:
 To start the client without Admin rights:
 
     yarn start-proxy
-
-## Things to do
