@@ -154,6 +154,21 @@ deleteCriterion(index:number){
   this.saveCriteria(criteria);
 }
 
+addCriterion(){
+  console.log('add criterion');
+  let criterion = {
+    index:this.state.criteria.length+1,
+    given:'TYPE GIVEN',
+    when:'TYPE WHEN',
+    then:'TYPE THEN'
+  };
+  const criteria = [...this.state.criteria];
+  criteria.push(criterion);
+  this.setState({
+    criteria:criteria
+  });
+}
+
 deleteCriterionButton(rowData,column){
   return <div>
       <Button variant="danger" size="sm" onClick={() => this.deleteCriterion(rowData.index)}>Delete</Button>
@@ -219,6 +234,17 @@ deleteCriterionButton(rowData,column){
                 {/* this.props.story.criteria.map((criterion, index) => {
                   return <CriterionComponent key={index} criterion={criterion} />
                 }) */}
+                 <div className="row">
+                  <div className="col-12">
+                    <Button variant="primary" onClick={() => this.addCriterion()}
+                     className="float-right" size="sm">New criterion</Button>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-12">
+                    &nbsp;
+                  </div>
+                </div>
                  <DataTable className="card-text" value={this.state.criteria} 
                  onRowEditInit={this.onRowEditInit} onRowEditSave={this.onRowEditSave} onRowEditCancel={this.onRowEditCancel}
                  editMode="row" >
