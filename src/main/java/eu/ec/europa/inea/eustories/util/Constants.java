@@ -16,6 +16,11 @@ public class Constants {
         public static final String DEV = "dev";
 
         /**
+         * Local environment with mongdb database started in a local docker container
+         */
+        public static final String LOCAL_DOCKER = "localdocker";
+
+        /**
          * Production environment
          */
         public static final String PROD = "prod";

@@ -190,3 +190,10 @@ To start the client with Admin rights:
 To start the client without Admin rights:
 
     yarn start-proxy
+
+## next steps
+
+Start local with mongodb container
+Use a filesystem to persist all stories
+Create an image with the whole backend and run the client against the image
+Build in GitLab

@@ -29,6 +29,7 @@ import java.nio.file.Paths;
 import java.util.*;
 
 import static eu.ec.europa.inea.eustories.util.Constants.SpringProfiles.DEV;
+import static eu.ec.europa.inea.eustories.util.Constants.SpringProfiles.LOCAL_DOCKER;
 import static java.net.URLDecoder.decode;
 
 /**
@@ -144,7 +145,7 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
     }
 
     @Bean
-    @Profile(DEV)
+    @Profile({DEV,LOCAL_DOCKER})
     public WebMvcConfigurer corsConfigurerLocal() {
         return new WebMvcConfigurerAdapter() {
 

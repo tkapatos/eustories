@@ -155,7 +155,7 @@ deleteCriterion(index:number){
 }
 
 addCriterion(){
-  let criterion = {
+  const criterion = {
     index:this.state.criteria.length+1,
     given:'TYPE GIVEN',
     when:'TYPE WHEN',
