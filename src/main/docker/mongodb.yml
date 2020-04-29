@@ -4,5 +4,5 @@ services:
     image: mongo:4.0.13
     ports:
       - '27017:27017'
-    # volumes:
-    #     - ~/volumes/jhipster/eustories/mongodb/:/data/db/
+    volumes:
+      - replace_with_host_direcotry:/data/db/
